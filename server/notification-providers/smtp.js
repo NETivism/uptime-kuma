@@ -91,7 +91,11 @@ class SMTP extends NotificationProvider {
 
         let bodyTextContent = msg;
         if (heartbeatJSON) {
-            bodyTextContent = `${msg}\nTime (UTC): ${heartbeatJSON["time"]}`;
+            if (monitorJSON && (monitorJSON["type"] === "http" || monitorJSON["type"] === "keyword")) {
+                bodyTextContent = `${msg}\nTime (UTC): ${heartbeatJSON["time"]}\n${monitorJSON["url"]}`;
+            } else {
+                bodyTextContent = `${msg}\nTime (UTC): ${heartbeatJSON["time"]}`;
+            }
         }
 
         // send mail with defined transport object
