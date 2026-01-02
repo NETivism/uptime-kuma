@@ -56,6 +56,9 @@ export default {
                 6: "6h",
                 24: "24h",
                 168: "1w",
+                720: "1M",
+                1440: "2M",
+                2160: "3M",
             },
 
             chartRawData: null,
