@@ -95,7 +95,7 @@ router.get("/api/status-page/heartbeat/:slug", cache("1 minutes"), async (reques
             ]);
 
             list = R.convertToBeans("heartbeat", list);
-            heartbeatList[monitorID] = list.reverse().map(row => row.toPublicJSON());
+            heartbeatList[monitorID] = list.reverse().map(row => row.toJSON());
 
             const uptimeCalculator = await UptimeCalculator.getUptimeCalculator(monitorID);
             uptimeList[`${monitorID}_24`] = uptimeCalculator.get24Hour().uptime;
